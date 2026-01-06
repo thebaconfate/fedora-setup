@@ -1,0 +1,70 @@
+sudo dnf -y upgrade
+sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# Alternative package manager (for stuff like spotify)
+sudo dnf -y install flatpak
+
+# Brave browser
+sudo dnf -y install brave-browser
+
+# Spotify
+flatpak install -y flathub com.spotify.Client
+
+# Git
+sudo dnf -y install git-core
+
+# Neovim
+sudo dnf -y install neovim
+
+# node.js
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# instead of restarting shell
+\. "$HOME/.nvm/nvm.sh"
+nvm install 24
+
+sudo dnf -y install maven
+
+# Docker
+sudo dnf remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+sudo systemctl start docker
+
+
+# Docker desktop (preferibly not)
+# sudo dnf y- install gnome-terminal
+# sudo dnf y- install ./docker-desktop-x86_64.rpm
+
+# Discord
+sudo dnf -y install discord
+
+
+# For terminal copy
+sudo dnf -y install xclip
+
+# Zsh
+sudo dnf -y install zsh
+
+# Nerdfont
+cd ~/Downloads
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/CodeNewRoman.zip
+unzip CodeNewRoman.zip -d CodeNewRoman
+mkdir -p ~/.local/share/fonts
+cp ~/Downloads/CodeNewRoman/*.otf ~/.local/share/fonts/
+fc-cache -fv
+
+# To use texlab (neovim)
+sudo dnf install latexmk texlive-scheme-medium
+
+# For outlook calender syncinc
+sudo dnf install evolution-ews
