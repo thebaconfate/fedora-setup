@@ -153,4 +153,4 @@ nvidia-smi # check if running post reboot
 sudo dnf install -y steam
 
 # Wine
-sudo dnf install wine
+sudo dnf install -y wine
